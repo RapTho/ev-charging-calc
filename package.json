@@ -1,0 +1,24 @@
+{
+  "name": "ev-charging-calc",
+  "version": "1.0.0",
+  "description": "Using the EV charging provider's API to get a better cost summary than provided via their UI",
+  "main": "app.js",
+  "scripts": {
+    "dev": "dotenv_config_path=.env NODE_ENV=dev node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RapTho/ev-charging-calc.git"
+  },
+  "author": "Raphael Tholl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RapTho/ev-charging-calc/issues"
+  },
+  "homepage": "https://github.com/RapTho/ev-charging-calc#readme",
+  "devDependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
