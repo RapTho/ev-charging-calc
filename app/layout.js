@@ -1,10 +1,7 @@
 import "./globals.scss";
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
 import Header from "./_components/Header";
+import Footer from "./_components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,16 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Container>
-          <Row>
-            <Col>
-              <Header />
-            </Col>
-          </Row>
-          <Row>
-            <Col>{children}</Col>
-          </Row>
-        </Container>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
