@@ -1,7 +1,15 @@
+"use client";
+
+import { Content } from "@carbon/react";
+
+import BigNumber from "./components/BigNumber";
+
 export default function Home() {
   return (
     <main>
-      <h3>some content</h3>
+      <Content>
+        <BigNumber />
+      </Content>
     </main>
   );
 }
