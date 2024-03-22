@@ -1,29 +1,27 @@
-@use '@carbon/react';
-@use '@carbon/react/scss/breakpoint' as *;
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-areas: 
+        "logo header header header"
+        "sidebar content content content"
+        "sidebar footer footer footer";
+    grid-template-rows: 60px auto 75px;
+    gap: 1rem;
 
-// Components
-@use './components/Header/Header';
-@use './components/Footer/Footer';
-@use './components/BigNumber/BigNumber';
-
-@media (min-width: 42rem) {
-    .cds--grid--no-gutter {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
 }
 
-.cds--content {
-    margin-top: 3rem;
-    padding: 0;
-    background: var(--cds-background);
+.header {
+    grid-area: header;
+    align-self: center;
 }
 
-.cds--content .cds--css-grid {
-    max-width: 100%;
+.content {
+    grid-area: content;
+    justify-self: center;
+}
 
-    @include breakpoint(md) {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+.footer {
+    grid-area: footer;
+    justify-self: center;
+    align-self: center;
 }

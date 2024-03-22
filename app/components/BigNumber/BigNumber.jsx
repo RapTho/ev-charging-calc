@@ -1,6 +1,3 @@
-"use client";
-
-import { Grid, Column } from "@carbon/react";
 import getTotalkWh from "@/app/lib/getTotalkWh";
 
 export default function BigNumber() {
@@ -16,11 +13,9 @@ export default function BigNumber() {
     data.toFixed(2)
   );
   return (
-    <Grid>
-      <Column lg={16} md={8} sm={4} className="bigNumber">
-        <h1>Consumption: {totalConsumption} kWh</h1>
-        <p>As of {timeNow}</p>
-      </Column>
-    </Grid>
+    <>
+      <h1>Consumption: {totalConsumption} kWh</h1>
+      <p>As of {timeNow}</p>
+    </>
   );
 }
