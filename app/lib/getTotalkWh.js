@@ -21,9 +21,12 @@ const getTotalkWh = async (start, end) => {
     },
   };
 
+  if (!process.env.URL) return;
+
   const r = await fetch(endpoint, options);
 
   if (!r.ok) {
+    console.error(`Endpoint: ${endpoint}`);
     throw "Failed to fetch data";
   }
   const data = await r.json();

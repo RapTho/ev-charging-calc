@@ -1,0 +1,17 @@
+.navContainer {
+    width: 100%;
+    height: 100%;
+    text-align:justify;
+}
+
+.navItem {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.navItem > a {
+    text-decoration: none;
+
+}

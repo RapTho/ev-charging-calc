@@ -1,5 +1,6 @@
 import "./globals.scss";
 
+import Logo from "./components/Logo";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -13,12 +14,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <div className="container">
+          <div className="logo">
+            <Logo />
+          </div>
           <div className="header">
             <Header />
           </div>
-          <div className="content">
-            {children}
-          </div>
+          <div className="content">{children}</div>
           <div className="footer">
             <Footer />
           </div>

@@ -3,13 +3,19 @@
     height: 100vh;
     grid-template-areas: 
         "logo header header header"
-        "sidebar content content content"
-        "sidebar footer footer footer";
+        "content content content content"
+        "footer footer footer footer";
+    grid-template-columns: 2fr 3fr 3fr 3fr;
     grid-template-rows: 60px auto 75px;
     gap: 1rem;
 
 }
-
+.logo {
+    grid-area: logo;
+    align-self: center;
+    justify-self: start;
+    overflow: hidden;
+}
 .header {
     grid-area: header;
     align-self: center;
