@@ -17,9 +17,7 @@ export default function RootLayout({ children }) {
           <div className="logo">
             <Logo />
           </div>
-          <div className="header">
-            <Header />
-          </div>
+          <div className="header">{/* <Header /> */}</div>
           <div className="content">{children}</div>
           <div className="footer">
             <Footer />

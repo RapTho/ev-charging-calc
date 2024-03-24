@@ -1,22 +1,15 @@
 import getTotalkWh from "@/app/lib/getTotalkWh";
 
-export default function BigNumber() {
-  const START = process.env.START || Date.parse("February 22, 2024 14:00:00");
-  const END = process.env.END || Date.now();
+export default async function BigNumber() {
+  const start = process.env.START || Date.parse("February 22, 2024 14:00:00");
+  const end = process.env.END || Date.now();
 
-  // const date = new Date();
-  // const timeNow = date
-  //   .toLocaleString("de-CH", { timeZone: "CET" })
-  //   .slice(0, -3); // remove seconds
+  const totalConsumption = await getTotalkWh(start, end);
 
-  const totalConsumption = getTotalkWh(START, END).then((data) => {
-    if (!data) return;
-    return data.toFixed(2);
-  });
   return (
     <>
-      <h1>Consumption: {totalConsumption} kWh</h1>
-      {/* <p>As of {timeNow}</p> */}
+      <h1>Consumption: {totalConsumption.toFixed(2)} kWh</h1>
+      <h2>@ 0.3 CHF/kWh = {(totalConsumption * 0.3).toFixed(2)} CHF</h2>
     </>
   );
 }

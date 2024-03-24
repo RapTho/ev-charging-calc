@@ -1,4 +1,4 @@
-const getTotalkWh = async (start, end) => {
+export const fetchData = async (start, end) => {
   // For local development only
   if (process.env.NODE_ENV === "dev") require("dotenv").config();
 
@@ -29,7 +29,12 @@ const getTotalkWh = async (start, end) => {
     console.error(`Endpoint: ${endpoint}`);
     throw "Failed to fetch data";
   }
-  const data = await r.json();
+  return await r.json();
+};
+
+const getTotalkWh = async (start, end) => {
+  const data = await fetchData(start, end);
+
   return data.reduce(
     (accumulator, currentValue) => accumulator + currentValue.Consumption,
     0
