@@ -1,4 +1,4 @@
-import "./globals.scss";
+import "./globals.css";
 
 import Logo from "./components/Logo";
 import Header from "./components/Header";
