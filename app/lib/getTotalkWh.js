@@ -1,3 +1,5 @@
+"use server";
+
 export const fetchData = async (start, end) => {
   // For local development only
   if (process.env.NODE_ENV === "dev") require("dotenv").config();
