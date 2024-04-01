@@ -1,5 +1,3 @@
-import getTableData from "@/lib/getTableData";
-
 import {
   Table,
   TableBody,
