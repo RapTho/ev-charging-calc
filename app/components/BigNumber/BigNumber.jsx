@@ -6,16 +6,14 @@ export default function BigNumber() {
   const start = process.env.START || Date.parse("February 22, 2024 14:00:00");
   const end = process.env.END || Date.now();
 
-  // const totalConsumption = await getTotalkWh(start, end);
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
         `/api/getTotalkWh/?start=${encodeURI(start)}&end=${encodeURI(end)}`
       );
       if (response.ok) {
-        const newData = await response.json();
-        setkWh(newData.kWh.toFixed(2));
+        const data = await response.json();
+        setkWh(data.kWh.toFixed(2));
       }
     };
 

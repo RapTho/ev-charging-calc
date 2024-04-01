@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main>
       <BigNumber />
-      {/* <BarChart /> */}
+      <BarChart />
       {/* <Table /> */}
     </main>
   );

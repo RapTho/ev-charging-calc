@@ -29,7 +29,10 @@ export const getData = async (start, end) => {
     console.error(`Endpoint: ${endpoint}`);
     throw "Failed to fetch data";
   }
-  return await r.json();
+  const data = await r.json();
+  return data.sort(function (a, b) {
+    return new Date(a.DateTime) - new Date(b.DateTime);
+  });
 };
 
 export default getData;
