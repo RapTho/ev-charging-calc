@@ -1,8 +1,8 @@
 import "./globals.css";
 
-import Logo from "./components/Logo";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "EV charger dashboard",
@@ -13,16 +13,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div className="container">
-          <div className="logo">
-            <Logo />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="container">
+            <div className="header">
+              <Header />
+            </div>
+            <div className="content">{children}</div>
+            <div className="footer">
+              <Footer />
+            </div>
           </div>
-          <div className="header">{/* <Header /> */}</div>
-          <div className="content">{children}</div>
-          <div className="footer">
-            <Footer />
-          </div>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,6 +1,15 @@
+.container {
+    display: grid;
+    grid-template-areas: "logo nav nav mode";
+    grid-template-columns: 2fr 3fr 3fr 3fr;
+    align-items: center;
+}
+
+.logo {
+    grid-area: logo;
+}
 .navContainer {
-    width: 100%;
-    height: 100%;
+    grid-area: nav;
     text-align:justify;
 }
 
@@ -14,4 +23,9 @@
 .navItem > a {
     text-decoration: none;
 
+}
+
+.modeToggle {
+    grid-area: mode;
+    justify-self: right;
 }
