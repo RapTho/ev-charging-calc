@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import {
   BarChart,
   Bar,
@@ -12,6 +12,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+
+import formatDate from "@/lib/formatDate";
 
 // Override console.error
 // This is a hack to suppress the warning about missing defaultProps in recharts library as of version 2.12
@@ -28,14 +30,14 @@ class BarChartClass extends PureComponent {
       <ResponsiveContainer minWidth="100%" minHeight="300px">
         <BarChart width={500} height={300} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis unit=" kWh" />
+          <XAxis dataKey="DateTime" />
+          <YAxis unit="kWh" />
           <Tooltip />
           <Legend />
           <Bar
             dataKey="kWh"
-            fill="#2f55b5"
-            activeBar={<Rectangle fill="#4ccc2c" stroke="blue" />}
+            fill="black"
+            activeBar={<Rectangle fill="black" stroke="black" />}
           />
         </BarChart>
       </ResponsiveContainer>
@@ -43,26 +45,15 @@ class BarChartClass extends PureComponent {
   }
 }
 
-const start = process.env.START || Date.parse("February 22, 2024 14:00:00");
-const end = process.env.END || Date.now();
+export default function BarChartComponent({ data }) {
+  if (!data || data.length === 0) return;
 
-export default function BarChartComponent() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `/api/getBarData/?start=${encodeURI(start)}&end=${encodeURI(end)}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setData(data);
-      }
+  data = data.map((el) => {
+    return {
+      kWh: el.Consumption,
+      DateTime: formatDate(el.DateTime, "DD.MM"),
     };
-
-    fetchData();
-  }, [start, end]);
-
-  const [data, setData] = useState({});
-
+  });
   const component = new BarChartClass();
   return component.render(data);
 }

@@ -31,7 +31,7 @@ export const getData = async (start, end) => {
   }
   const data = await r.json();
   return data.sort(function (a, b) {
-    return new Date(a.DateTime) - new Date(b.DateTime);
+    return new Date(b.DateTime) - new Date(a.DateTime);
   });
 };
 
