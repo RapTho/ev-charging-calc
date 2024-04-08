@@ -19,15 +19,15 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <div className="hidden flex-col md:flex">
-            <div className="border-b">
-              <div className="flex h-16 items-center px-4">
-                <Header />
-              </div>
-              <div className="content">{children}</div>
-              <div className="footer">{/* <Footer /> */}</div>
-            </div>
+          {/* <div className="hidden flex-col md:flex"> */}
+          {/* <div className="border-b"> */}
+          <div className="flex h-16 items-center px-4">
+            <Header />
           </div>
+          <div>{children}</div>
+          <div>{/* <Footer /> */}</div>
+          {/* </div> */}
+          {/* </div> */}
         </ThemeProvider>
       </body>
     </html>

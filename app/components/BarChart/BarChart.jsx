@@ -1,6 +1,6 @@
 "use client";
 
-import React, { PureComponent } from "react";
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -24,27 +24,6 @@ console.error = (...args) => {
   error(...args);
 };
 
-class BarChartClass extends PureComponent {
-  render(data) {
-    return (
-      <ResponsiveContainer minWidth="100%" minHeight="300px">
-        <BarChart width={500} height={300} data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="DateTime" />
-          <YAxis unit="kWh" />
-          <Tooltip />
-          <Legend />
-          <Bar
-            dataKey="kWh"
-            fill="black"
-            activeBar={<Rectangle fill="black" stroke="black" />}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    );
-  }
-}
-
 export default function BarChartComponent({ data }) {
   if (!data || data.length === 0) return;
 
@@ -54,6 +33,28 @@ export default function BarChartComponent({ data }) {
       DateTime: formatDate(el.DateTime, "DD.MM"),
     };
   });
-  const component = new BarChartClass();
-  return component.render(data);
+
+  return (
+    <ResponsiveContainer width="100%" height={350}>
+      <BarChart width={500} height={300} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          dataKey="DateTime"
+          tickLine={false}
+          axisLine={false}
+          stroke="#888888"
+        />
+        <YAxis unit=" kWh" axisLine={false} tickLine={false} stroke="#888888" />
+        <Tooltip />
+        <Legend />
+        <Bar
+          dataKey="kWh"
+          fill="currentColor"
+          radius={[4, 4, 0, 0]}
+          activeBar={<Rectangle fill="black" stroke="black" />}
+          className="fill-primary"
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  );
 }
