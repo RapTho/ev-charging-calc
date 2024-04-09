@@ -9,11 +9,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 
 import formatDate from "@/lib/formatDate";
+import CustomTooltip from "@/components/CustomTooltip";
 
 // Override console.error
 // This is a hack to suppress the warning about missing defaultProps in recharts library as of version 2.12
@@ -45,8 +45,7 @@ export default function BarChartComponent({ data }) {
           stroke="#888888"
         />
         <YAxis unit=" kWh" axisLine={false} tickLine={false} stroke="#888888" />
-        <Tooltip />
-        <Legend />
+        <Tooltip content={<CustomTooltip />} />
         <Bar
           dataKey="kWh"
           fill="currentColor"

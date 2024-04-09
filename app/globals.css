@@ -80,7 +80,7 @@
     height: 100vh;
     grid-template-areas:
         "header header header header"
-        "sidebar content content content"
+        "content content content content"
         "footer footer footer footer";
     grid-template-columns: 2fr 3fr 3fr 3fr;
     grid-template-rows: 60px minmax(150px, calc(100vh - 60px - 75px)) 75px;
@@ -90,18 +90,17 @@
 
 .header {
     grid-area: header;
-    align-self: center;
+    height: 60px;
 }
 
 .content {
     grid-area: content;
-    width: 100%;
-    padding: 1rem;
-    justify-self: center;
+    height: calc(100vh - 60px + 75px);
 }
 
 .footer {
     grid-area: footer;
     justify-self: center;
     align-self: center;
+    height: 75px;
 }

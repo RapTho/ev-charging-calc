@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
@@ -20,14 +20,17 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           {/* <div className="hidden flex-col md:flex"> */}
-          {/* <div className="border-b"> */}
-          <div className="flex h-16 items-center px-4">
-            <Header />
+          <div className="container">
+            <div className="header">
+              <div className="flex h-16 items-center pr-4">
+                <Header />
+              </div>
+            </div>
+            <div className="content">{children}</div>
+            <div className="footer">
+              <Footer />
+            </div>
           </div>
-          <div>{children}</div>
-          <div>{/* <Footer /> */}</div>
-          {/* </div> */}
-          {/* </div> */}
         </ThemeProvider>
       </body>
     </html>
