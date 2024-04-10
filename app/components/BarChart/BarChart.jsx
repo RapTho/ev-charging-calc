@@ -37,7 +37,7 @@ export default function BarChartComponent({ data }) {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart width={500} height={300} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3" vertical={false} />
         <XAxis
           dataKey="DateTime"
           tickLine={false}

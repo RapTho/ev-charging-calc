@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { subDays } from "date-fns";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,10 +10,9 @@ import { CalendarDateRangePicker } from "@/components/ui/date-range-picker";
 
 import BarChart from "@/components/BarChart";
 
-const start = process.env.START || Date.parse("February 22, 2024 14:00:00");
-const end = process.env.END || Date.now();
-
 export default function DashboardPage() {
+  const [start, setStart] = useState(Date.parse(subDays(Date.now(), 31)));
+  const [end, setEnd] = useState(Date.now());
   const [data, setData] = useState([]);
   const [kWh, setkWh] = useState(0);
 
@@ -34,7 +34,7 @@ export default function DashboardPage() {
     };
 
     fetchData();
-  }, []);
+  }, [start, end]);
 
   return (
     <div className="hidden flex-col md:flex">
@@ -42,8 +42,23 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
           <div className="flex items-center space-x-2">
-            <CalendarDateRangePicker />
-            <Button>Save</Button>
+            <CalendarDateRangePicker
+              start={start}
+              setStart={setStart}
+              end={end}
+              setEnd={setEnd}
+            />
+            <Button
+              className="text-base font-medium"
+              onClick={() => {
+                const now = Date.now();
+                const lastWeek = Date.parse(subDays(Date.now(), 7));
+                setEnd(now);
+                setStart(lastWeek);
+              }}
+            >
+              Last week
+            </Button>
           </div>
         </div>
         <Tabs defaultValue="overview" className="space-y-4">
@@ -55,8 +70,8 @@ export default function DashboardPage() {
                   <text
                     x="0"
                     y="18"
-                    font-family="Arial"
-                    font-size="24"
+                    fontFamily="Arial"
+                    fontSize="24"
                     fill="black"
                   >
                     CHF
@@ -105,7 +120,7 @@ export default function DashboardPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    class="h-4 w-4 text-muted-foreground"
+                    className="h-4 w-4 text-muted-foreground"
                   >
                     <circle cx="12" cy="12" r="10" />
                     <line x1="6" y1="12" x2="18" y2="12" />
@@ -136,8 +151,8 @@ export default function DashboardPage() {
                     <text
                       x="0"
                       y="18"
-                      font-family="Arial"
-                      font-size="24"
+                      fontFamily="Arial"
+                      fontSize="24"
                       fill="black"
                     >
                       #
