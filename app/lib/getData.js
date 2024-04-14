@@ -1,10 +1,10 @@
-export const getData = async (start, end) => {
+export const getData = async (start, end, authString) => {
   // For local development only
   if (process.env.NODE_ENV === "dev") require("dotenv").config();
 
-  const authString = `Basic ${Buffer.from(
-    `${process.env.UN}:${process.env.PW}`
-  ).toString("base64")}`;
+  // const authString = `Basic ${Buffer.from(
+  //   `${process.env.UN}:${process.env.PW}`
+  // ).toString("base64")}`;
 
   const endpoint =
     `${process.env.DATA_URL}/api/Chargings/History?` +
@@ -26,7 +26,6 @@ export const getData = async (start, end) => {
   const r = await fetch(endpoint, options);
 
   if (!r.ok) {
-    console.error(`Endpoint: ${endpoint}`);
     throw "Failed to fetch data";
   }
   const data = await r.json();

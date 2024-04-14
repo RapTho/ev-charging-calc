@@ -15,11 +15,20 @@ export default function DashboardPage() {
   const [end, setEnd] = useState(Date.now());
   const [data, setData] = useState([]);
   const [kWh, setkWh] = useState(0);
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
+    const authString = localStorage.getItem("auth");
+    setPrice(localStorage.getItem("price"));
+
     const fetchData = async () => {
       const response = await fetch(
-        `/api/getData/?start=${encodeURI(start)}&end=${encodeURI(end)}`
+        `/api/getData/?start=${encodeURI(start)}&end=${encodeURI(end)}`,
+        {
+          headers: {
+            Authorization: `${authString}`,
+          },
+        }
       );
       if (response.ok) {
         const data = await response.json();
@@ -64,7 +73,7 @@ export default function DashboardPage() {
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsContent value="overview" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <Card>
+              <Card className="row-auto">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Cost</CardTitle>
                   <text
@@ -79,12 +88,14 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
-                    CHF {(kWh * 0.3).toFixed(2)}
+                    CHF {(kWh * price).toFixed(2)}
                   </div>
-                  <p className="text-xs text-muted-foreground">@ 0.3 CHF/kWh</p>
+                  <p className="text-xs text-muted-foreground">
+                    @ {price} CHF/kWh
+                  </p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="row-auto">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
                     Consumption
