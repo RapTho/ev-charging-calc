@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
+    <!-- EV letters with modern font family -->
+    <text x="10" y="60" font-family="Arial, Helvetica, sans-serif" font-size="40" fill="#000">EV</text>
+    <!-- Charging text -->
+    <text x="70" y="60" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#000">charging</text>
+    <!-- Flash symbol for electricity -->
+    <polygon points="150,20 155,35 170,35 157.5,45 165,65 145,45 152.5,35 130,35 145,20" fill="#fdd835"/>
+    <!-- Bolt -->
+    <polygon points="145,20 150,10 155,20" fill="#ffffff"/>
+</svg>
