@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          {/* <div className="hidden flex-col md:flex"> */}
           <div className="container">
             <div className="header">
               <div className="flex h-16 items-center pr-4">

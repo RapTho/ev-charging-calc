@@ -46,11 +46,12 @@ export default function DashboardPage() {
   }, [start, end]);
 
   return (
-    <div className="hidden flex-col md:flex">
+
+    <div className="flex-col md:flex-row">
       <div className="flex-1 space-y-4 p-4 pt-6">
-        <div className="flex items-center justify-between space-y-2">
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
             <CalendarDateRangePicker
               start={start}
               setStart={setStart}
@@ -72,7 +73,7 @@ export default function DashboardPage() {
         </div>
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
               <Card className="row-auto">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Cost</CardTitle>

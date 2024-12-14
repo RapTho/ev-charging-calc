@@ -17,8 +17,10 @@ export async function GET(request) {
   } else {
     const data = await getData(start, end, authString);
 
-    if (!data) return Response.status(500);
-
+    if (!data) {
+      return Response.json({ error: "Failed to fetch data" }, { status: 500 });
+    }
+    
     return Response.json(data, {
       status: 200,
     });
