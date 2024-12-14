@@ -1,4 +1,4 @@
-export const errorResponse = (status, msg) => {
+export const errorResponse = (status: number, msg: string) => {
   return Response.json(
     {
       Error: msg,

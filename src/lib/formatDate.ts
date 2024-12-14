@@ -1,3 +1,5 @@
+import { dateFormats } from "src/types";
+
 export default function formatDate(date, format) {
   const day = date.slice(8, 10);
   const month = date.slice(5, 7);
@@ -5,10 +7,10 @@ export default function formatDate(date, format) {
 
   let dateString = "";
   switch (format) {
-    case "DD.MM":
+    case dateFormats.ddmm:
       dateString = `${day}.${month}`;
       break;
-    case "DD.MM.YYYY":
+    case dateFormats.ddmmyyyy:
       dateString = `${day}.${month}.${year}`;
     default:
       break;
