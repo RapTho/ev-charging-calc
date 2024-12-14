@@ -82,8 +82,11 @@
         "header header header header"
         "content content content content"
         "footer footer footer footer";
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 2fr 3fr 3fr 3fr;
+    grid-template-rows: 60px minmax(150px, calc(100vh - 60px - 75px)) 75px;
+    gap: 1rem;
+    overflow: hidden;
+
 }
 
 .header {
@@ -93,13 +96,12 @@
 
 .content {
     grid-area: content;
-    padding: 1rem;
-    overflow-y: auto;
+    height: calc(100vh - 60px + 75px);
 }
 
 .footer {
     grid-area: footer;
     justify-self: center;
-    padding: 1rem;
+    align-self: center;
     height: 75px;
 }
