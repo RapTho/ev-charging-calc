@@ -46,7 +46,6 @@ export default function DashboardPage() {
   }, [start, end]);
 
   return (
-
     <div className="flex-col md:flex-row">
       <div className="flex-1 space-y-4 p-4 pt-6">
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
