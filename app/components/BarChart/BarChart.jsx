@@ -30,7 +30,7 @@ export default function BarChartComponent({ data }) {
   data = data.map((el) => {
     return {
       kWh: el.Consumption,
-      DateTime: formatDate(el.DateTime, "DD.MM"),
+      DateTime: formatDate(el.DateTime, "DD.MM.YYYY"),
     };
   });
 

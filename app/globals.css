@@ -76,32 +76,55 @@
 }
 
 .container {
-    display: grid;
-    height: 100vh;
-    grid-template-areas:
-        "header header header header"
-        "content content content content"
-        "footer footer footer footer";
-    grid-template-columns: 2fr 3fr 3fr 3fr;
-    grid-template-rows: 60px minmax(150px, calc(100vh - 60px - 75px)) 75px;
-    gap: 1rem;
-    overflow: hidden;
-
+  /* Mobile-first: single column, header/content/footer stacked. */
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
 }
 
 .header {
-    grid-area: header;
-    height: 60px;
+  grid-area: header;
+  height: 60px;
 }
 
 .content {
-    grid-area: content;
-    height: calc(100vh - 60px + 75px);
+  grid-area: content;
+  /* allow content to scroll vertically on small screens */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem;
 }
 
 .footer {
-    grid-area: footer;
-    justify-self: center;
-    align-self: center;
-    height: 75px;
+  grid-area: footer;
+  justify-self: center;
+  align-self: center;
+  height: 75px;
+}
+
+/* Desktop layout: restore multi-column grid for wider viewports */
+@media (min-width: 768px) {
+  .container {
+    grid-template-areas:
+      "header header header header"
+      "content content content content"
+      "footer footer footer footer";
+    grid-template-columns: 2fr 3fr 3fr 3fr;
+    /* Use flexible middle row so content fits naturally without creating an internal scrollbar */
+    grid-template-rows: 60px 1fr 75px;
+    gap: 1rem;
+  }
+
+  .content {
+    /* Let the page handle vertical scrolling on desktop; avoid inner scrollbars */
+    height: auto;
+    overflow: visible;
+    padding: 1rem;
+  }
 }

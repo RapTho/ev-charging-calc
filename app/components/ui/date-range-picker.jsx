@@ -24,6 +24,7 @@ export function CalendarDateRangePicker({
     from: start,
     to: end,
   });
+  const [pendingFrom, setPendingFrom] = React.useState(null);
 
   React.useEffect(() => {
     setRange({
@@ -69,12 +70,34 @@ export function CalendarDateRangePicker({
             mode="range"
             defaultMonth={range ? range.from : null}
             selected={range}
-            onSelect={(range) => {
-              setRange(range);
-              if (range && range.from && range.to) {
-                setStart(Date.parse(range.from));
-                setEnd(Date.parse(range.to));
+            onSelect={(r) => {
+              // Keep visual selection in sync but do not trigger fetch here.
+              setRange(r);
+            }}
+            onDayClick={(day) => {
+              // First click: set pendingFrom (user is selecting the start)
+              if (!pendingFrom) {
+                setPendingFrom(day);
+                setRange({ from: day, to: undefined });
+                return;
               }
+
+              // If second click is before the pendingFrom, treat it as a new pendingFrom
+              // and wait for another click to become the 'to' date.
+              if (day < pendingFrom) {
+                setPendingFrom(day);
+                setRange({ from: day, to: undefined });
+                return;
+              }
+
+              // Otherwise finalize the range (allow same-day ranges)
+              const fromDate = pendingFrom;
+              const toDate = day;
+
+              setRange({ from: fromDate, to: toDate });
+              setStart(Date.parse(fromDate));
+              setEnd(Date.parse(toDate));
+              setPendingFrom(null);
             }}
             numberOfMonths={2}
           />
