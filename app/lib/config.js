@@ -30,14 +30,17 @@ function buildAuth() {
 function getConfig() {
   const dataUrl = process.env.DATA_URL;
   const auth = buildAuth();
-  const price = process.env.KWH_PRICE || process.env.NEXT_PUBLIC_KWH_PRICE || null;
+  const price =
+    process.env.KWH_PRICE || process.env.NEXT_PUBLIC_KWH_PRICE || null;
 
   const missing = [];
   if (!dataUrl) missing.push("DATA_URL");
   if (!auth) missing.push("ECARUP_AUTH or (ECARUP_USERNAME + ECARUP_PASSWORD)");
 
   if (missing.length > 0) {
-    throw new Error(`Missing required environment variables: ${missing.join(", ")}`);
+    throw new Error(
+      `Missing required environment variables: ${missing.join(", ")}`
+    );
   }
 
   return {
