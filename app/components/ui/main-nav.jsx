@@ -21,14 +21,6 @@ export function MainNav({ className, ...props }) {
       >
         Home
       </Link>
-      <Link
-        href="/settings"
-        className={
-          path === "/settings" ? defaultClasses.slice(21, -1) : defaultClasses
-        }
-      >
-        Settings
-      </Link>
     </nav>
   );
 }

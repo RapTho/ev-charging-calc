@@ -18,17 +18,13 @@ export default function DashboardPage() {
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    const authString = localStorage.getItem("auth");
-    setPrice(localStorage.getItem("price"));
+    // Price is provided via environment variable `NEXT_PUBLIC_KWH_PRICE`.
+    const envPrice = process.env.NEXT_PUBLIC_KWH_PRICE || 0;
+    setPrice(Number(envPrice));
 
     const fetchData = async () => {
       const response = await fetch(
-        `/api/getData/?start=${encodeURI(start)}&end=${encodeURI(end)}`,
-        {
-          headers: {
-            Authorization: `${authString}`,
-          },
-        }
+        `/api/getData/?start=${encodeURI(start)}&end=${encodeURI(end)}`
       );
       if (response.ok) {
         const data = await response.json();

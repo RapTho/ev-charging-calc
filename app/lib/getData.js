@@ -1,13 +1,10 @@
-export const getData = async (start, end, authString) => {
-  // For local development only
-  if (process.env.NODE_ENV === "dev") require("dotenv").config();
+const { getConfig } = require("./config");
 
-  // const authString = `Basic ${Buffer.from(
-  //   `${process.env.UN}:${process.env.PW}`
-  // ).toString("base64")}`;
+export const getData = async (start, end) => {
+  const cfg = getConfig();
 
   const endpoint =
-    `${process.env.DATA_URL}/api/Chargings/History?` +
+    `${cfg.DATA_URL}/api/Chargings/History?` +
     new URLSearchParams({
       from: parseInt(start / 1000),
       to: parseInt(end / 1000),
@@ -17,11 +14,9 @@ export const getData = async (start, end, authString) => {
   const options = {
     method: "GET",
     headers: {
-      Authorization: authString,
+      Authorization: cfg.AUTH,
     },
   };
-
-  if (!process.env.DATA_URL) return;
 
   const r = await fetch(endpoint, options);
 
